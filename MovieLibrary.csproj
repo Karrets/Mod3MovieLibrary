@@ -13,7 +13,7 @@
 
     <ItemGroup>
       <None Update="movies.csv">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="nlog.config">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

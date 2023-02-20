@@ -7,6 +7,12 @@ public sealed record Movie(
     string Name,
     string[] Genres
 ) {
+    public int Id {get;} = Id;
+    public string Name {get;} = Name;
+    public string[] Genres {get;} = Genres;
+    
+    private int? _hash;
+
     private string GenreString() {
         StringBuilder sb = new();
 
@@ -26,6 +32,9 @@ public sealed record Movie(
     }
 
     public override int GetHashCode() { //Get a hash of the record, based on only the name and string array.
+        if(_hash.HasValue)
+            return _hash.Value;
+        
         HashCode hc = new();
         hc.Add(Name);
 
@@ -33,7 +42,9 @@ public sealed record Movie(
             hc.Add(genre);
         }
 
-        return hc.ToHashCode();
+        _hash = hc.ToHashCode();
+        
+        return _hash.Value;
     }
 
     public override string ToString() {
